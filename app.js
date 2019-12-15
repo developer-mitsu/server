@@ -36,12 +36,10 @@ app.delete('/todos/:id', (req, res) => {
 })
 
 // 新規追加処理
-app.post('/todos', (req, res) => {
-    // idを付与する
-    const maxID = todos.length > 0 ?
-        Math.max(...todos.map(todo => todo.id)) : 0
-    
+app.post('/todos', (req, res) => {    
     const todo = req.body
+
+    // idの生成は関数に抽出しました。
     todo.id = createNewId()
 
     todos = todos.concat(todo)
